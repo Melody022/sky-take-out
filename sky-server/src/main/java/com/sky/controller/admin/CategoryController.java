@@ -45,5 +45,13 @@ public class CategoryController {
         return Result.success(pageResult);
     }
 
+    @PostMapping
+    @ApiOperation("新增菜品分类")
+    public Result<Category> save(@RequestBody CategoryDTO categoryDTO){
+        log.info("新增菜品分类：{}",categoryDTO);
+        CategoryService.save(categoryDTO);
+        return Result.success();
+    }
+
 
 }

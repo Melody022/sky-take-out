@@ -11,4 +11,6 @@ public interface CategoryService {
     void update(Category category);
 
     PageResult pageQuery(CategoryPageQueryDTO categoryPageQueryDTO);
+
+    void save(CategoryDTO categoryDTO);
 }
