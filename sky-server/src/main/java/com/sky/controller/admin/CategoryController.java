@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 分类管理控制器
  * 处理分类相关的HTTP请求
@@ -45,6 +47,13 @@ public class CategoryController {
         return Result.success(pageResult);
     }
 
+    @PostMapping( "/status/{status}")
+    @ApiOperation("修改分类状态")
+    public Result startOrStop(@PathVariable Integer status, Long id){
+        log.info("修改分类状态：{},{}",status,id);
+        CategoryService.startOrStop(status,id);
+        return Result.success();
+    }
     @PostMapping
     @ApiOperation("新增菜品分类")
     public Result<Category> save(@RequestBody CategoryDTO categoryDTO){
@@ -52,6 +61,20 @@ public class CategoryController {
         CategoryService.save(categoryDTO);
         return Result.success();
     }
+    @DeleteMapping
+    @ApiOperation("删除菜品分类")
+    public Result delete(@RequestParam Long id){
+        log.info("删除菜品分类：{}",id);
+        CategoryService.deleteById(id);
+        return Result.success();
+    }
 
-
+    @GetMapping("/list")
+    @ApiOperation("根据类型查询分类")
+    public Result<List<Category>> list(Integer type){
+        log.info("根据类型查询分类：{}",type);
+        List<Category> list = CategoryService.list(type);
+        return Result.success(list);
+    }
 }
+

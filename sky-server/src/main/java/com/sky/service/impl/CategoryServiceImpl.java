@@ -22,6 +22,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryMapper CategoryMapper;
+    @Autowired
+    private CategoryMapper categoryMapper;
+
     @Override
     public void update(Category category) {
         CategoryMapper.update(category);
@@ -52,5 +55,25 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryMapper.insert(category);
 
     }
+
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        Category category = new Category();
+        category.setStatus(status);
+        category.setId(id);
+        CategoryMapper.update(category);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        categoryMapper.deleteById(id);
+    }
+
+    @Override
+    public List<Category> list(Integer type) {
+        return categoryMapper.list(type);
+
+    }
+
 
 }
