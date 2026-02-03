@@ -7,3 +7,9 @@ sky:
     username: root
     password: swy13673432216
 
+
+  redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
