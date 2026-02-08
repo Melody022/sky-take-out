@@ -33,7 +33,7 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation("微信登录")
-    public Result<UserLoginDTO> login(@RequestBody UserLoginDTO userLoginDTO){
+    public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO){
         log.info("微信登录：{}", userLoginDTO.getCode());
 
         //调用service完成微信登录
@@ -49,6 +49,6 @@ public class UserController {
                 .openid(user.getOpenid())
                 .token(token)
                 .build();
-        return Result.success(userLoginDTO);
+        return Result.success(userLoginVO);
     }
 }
